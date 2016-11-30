@@ -15,8 +15,8 @@ app.on('window-all-closed', function() {
 
 var startupOpts = {
     useContentSize: true,
-    width: 1100,
-    height: 800,
+    width: 800,
+    height: 620,
     center: true,
     resizable: true,
     alwaysOnTop: false,
@@ -31,11 +31,12 @@ var startupOpts = {
     autoHideMenuBar: false,
     titleBarStyle: 'default',
     webPreferences: {
-        webSecurity: true,
+        webSecurity: false,
         nodeIntegration: false,
         allowDisplayingInsecureContent: true,
         allowRunningInsecureContent: true,
-        plugins: true
+        plugins: true,
+        preload: __dirname + '/inject/preload.js'
     }
 };
 

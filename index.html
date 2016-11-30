@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html ng-controller="AppController as app" lang="{{app.lang}}" class="{{app.browserClass}}" manifest="/skypespaces.web.appcache"
+      ng-class="{'oops': app.layoutService.isOops,'unsupported-browser': app.layoutService.isUnsupportedBrowser}">
+<head data-app='{"sessionId":"000000000CDF4F679365485D83CDDDC8","eventId":"37E22EF4D96645A880916BBE1B450038","preferredLocales":["en-us"],"flights":["skypeteams-web-b","test-skypeteams-web-b","msteams-web-b"]}'
+      data-themes='[{"key":"default","label":"Default","active":true},{"key":"dark","label":"Dark"},{"key":"contrast","label":"Contrast"}]'
+      data-build-date='2016-11-07T20:07:11.321Z'
+      data-version-date='2016-11-07T19:45:49.000Z'
+      data-version-hash='68a3c8092ea2030b5a25b7091aa4be9a0931e096'>
+
+  <script>
+    var waitForAppCache = false;
+    var timeoutHandle = null;
+
+    //check for app cache
+    var appCache = this.window.applicationCache;
+    if (appCache) {
+      waitForAppCache = true;
+
+      //new cache downloaded. refresh now
+      function handleUpdate() {
+        console.log('index.html: cache updated. refresh');
+        removeListeners();
+        window.location.reload();
+      }
+
+      //error updating cache. log error
+      function handleError(error) {
+        console.error('index.html: error getting app cache: ' + error);
+        removeListeners();
+      }
+
+      //no update available. do nothing
+      function handleNoUpdate() {
+        console.log('index.html: cache up-to-date');
+        removeListeners();
+      }
+
+      function removeListeners() {
+        if (waitForAppCache) {
+          console.log('index.html: remove startup cache listeners');
+          appCache.removeEventListener('error', handleError);
+          appCache.removeEventListener('noupdate', handleNoUpdate);
+          appCache.removeEventListener('updateready', handleUpdate);
+          waitForAppCache = false;
+          timeoutHandle && clearTimeout(timeoutHandle);
+          timeoutHandle = null;
+        }
+      }
+
+      //register for event regardless
+      console.log('index.html: register for events');
+      appCache.addEventListener('updateready', handleUpdate, false);
+      appCache.addEventListener('error', handleError, false);
+      appCache.addEventListener('noupdate', handleNoUpdate, false);
+
+      //check
+      console.log('index.html: check for appcache update. State: ' + appCache.status);
+      if (appCache.status == appCache.UPDATEREADY) {
+        console.log('index.html: update found. refresh page.');
+        handleUpdate();
+      } else if (appCache.status == appCache.IDLE) {
+        console.log('index.html: there is no update. resume app start');
+        removeListeners();
+      } else if (appCache.status !== appCache.UNCACHED) {
+        console.log('index.html: update not ready, continue with app start');
+        timeoutHandle = window.setTimeout(function(){
+          removeListeners();
+        }, 2000);
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      font-size: calc(1em*.625) !important;
+    }
+  </style>
+  <title ng-bind="app.pageTitle">Microsoft Teams - initializing...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  
+
+<!-- favicons -->
+  
+  <link rel="icon" type="image/png" href="https://statics.teams.microsoft.com/hashedassets/favicon/prod/favicon-32x32-9c4d1a6e.png"/>
+  <link rel="icon" type="image/png" href="https://statics.teams.microsoft.com/hashedassets/favicon/prod/favicon-16x16-f5196f10.png"/>
+  <link rel="icon" type="image/png" href="https://statics.teams.microsoft.com/hashedassets/favicon/prod/favicon-96x96-ef68450c.png"/>
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://statics.teams.microsoft.com/hashedassets/favicon/prod/favicon-9c67d4dc.ico" />
+
+<!-- Must be set BEFORE CKEDITOR script loads.-->
+  <script>window.CKEDITOR_BASEPATH = '/assets/vendor/ckeditor/';</script>
+
+  <script>
+    window['app-load-start-timestamp'] = Date.now();
+    window['webworker-js'] = "webworker-b6a19c37.js";
+  </script>
+
+  
+
+<!-- compiled JavaScript -->
+  <script src="https://statics.teams.microsoft.com/hashedjs/0-angular-jquery.min-064cd0e0.js"></script>
+  <script src="https://statics.teams.microsoft.com/hashedjs/1-vendor.min-ecd39d2d.js"></script>
+  <script src="https://statics.teams.microsoft.com/hashedjs/2-vendor.min-d6bbf21a.js"></script>
+  <script src="https://statics.teams.microsoft.com/hashedjs/3-app.min-efe89fdc.js"></script>
+
+<!-- external JavaScript -->
+
+  
+
+<!-- compiled Desktop JavaScript -->
+
+<!-- compiled CSS -->
+
+<!-- compiled Desktop CSS -->
+
+  <style id="loading-stylesheet">
+    html {
+      visibility: hidden;
+    }
+  </style>
+
+  <script src="scripts/extra.js"></script>
+
+  <script>
+    var htmlHeadElement = document.head || document.getElementsByTagName('head')[0];
+
+    var themeTransitionStyle = document.createElement('style');
+    themeTransitionStyle.innerHTML = '* { transition-property: background-color; transition-duration: .22s; transition-timing-function: ease-out; }';
+
+    var themedStyleSheets = [];
+     themedStyleSheets.push('https://statics.teams.microsoft.com/hashedcss/stylesheets.min-ceb137a5.css');
+         themedStyleSheets.push('https://statics.teams.microsoft.com/hashedcss/stylesheets.theme-contrast.min-c1531635.css');
+         themedStyleSheets.push('https://statics.teams.microsoft.com/hashedcss/stylesheets.theme-dark.min-b7ad8e02.css');
+        
+
+    function readCookie(name) {
+      var nameEq = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEq) == 0) return c.substring(nameEq.length,c.length);
+      }
+      return null;
+    }
+
+    function getStylesheetUrl(theme) {
+      for (var i = 0; i < themedStyleSheets.length; i++) {
+        var themedStyleSheet = themedStyleSheets[i];
+        if (themedStyleSheet.indexOf('.theme-' + theme + '.') !== -1) {
+          return themedStyleSheet;
+        }
+      }
+      return themedStyleSheets[0];
+    }
+
+    function setStylesheetFromCookie(fnDone, appInitialize) {
+      if (!appInitialize) {
+        htmlHeadElement.appendChild(themeTransitionStyle);
+      }
+
+      var previous = document.getElementById("themed-stylesheet");
+
+      var theme = readCookie("storedTheme") || "default";
+      var cssUrl = getStylesheetUrl(theme);
+
+      var link = document.createElement("link");
+      link.id = "themed-stylesheet";
+      link.rel = "stylesheet";
+      link.href = cssUrl;
+
+      console.log('Loading stylesheet: ' + cssUrl);
+      var fnDoneWrapper = function() {
+        if (fnDone) {
+          fnDone();
+        }
+
+        var loadingStylesheet = document.getElementById('loading-stylesheet');
+        if (loadingStylesheet) {
+          htmlHeadElement.removeChild(loadingStylesheet);
+        }
+
+        if (themeTransitionStyle.parentElement == htmlHeadElement) {
+          htmlHeadElement.removeChild(themeTransitionStyle);
+        }
+      }
+
+      link.onload = function () {
+        console.log('Loaded stylesheet: ' + cssUrl);
+        if (previous && previous.parentElement) {
+          previous.parentElement.removeChild(previous);
+        }
+        fnDoneWrapper();
+      }
+
+      link.onerror = function() {
+        console.log('Failed to load stylesheet: ' + cssUrl);
+        fnDoneWrapper();
+      }
+
+      htmlHeadElement.appendChild(link);
+    }
+
+    window.setStylesheetFromCookie = setStylesheetFromCookie;
+
+    setStylesheetFromCookie(function () {
+      _.defer(function() {
+        $('body').addClass('initialized');
+      });
+    }, true);
+
+    angular.element(document).ready(function() {
+
+      
+        angular.bootstrap(document, ['teamspace']);
+        
+    });
+  </script>
+</head>
+<body emit-window-events ngsf-fullscreen="fullscreenCtrl" ng-class="{
+      'theme-transition': app.layoutService.themeTransition,
+      'fullscreen-layout': app.layoutService.fullscreenEnabled,
+      'show-right-rail': app.layoutService.rightRailVisible,
+      'hide-messages': app.layoutService.hideDebug,
+      'loadingscreendone': app.layoutService.isLoaded,
+      'fade-in' : app.useSplashScreen,
+      'desktop-app' : app.layoutService.showDesktopHeaderBar,
+      'desktop-app-mac' : app.layoutService.isMacView && app.layoutService.showDesktopHeaderBar,
+      'debug-right-rail-show': app.layoutService.showPerfDashboard }">
+  <div ng-if="!app.layoutService.isLoaded"
+       class="app-loading animated"
+       analytics-panel="{{::app.panelRegions.main}}">
+    <desktop-header-bar ng-if="app.layoutService.showDesktopHeaderBar"></desktop-header-bar>
+    <loading-application
+            layout-service="app.layoutService"
+            environment="app.settingsService.appConfig.environment.type" />
+  </div>
+  <div ng-if="app.layoutService.isLoaded && !app.skipFirstRun"
+       class="first-run"
+       analytics-panel="{{::app.panelRegions.firstRun}}">
+    <desktop-header-bar ng-if="app.layoutService.showDesktopHeaderBar"></desktop-header-bar>
+    <!-- Adding noanimation=true to workaround bug https://github.com/angular-ui/ui-router/issues/545-->
+    <div class="ts-first-run" ui-view="{{::app.panelRegions.firstRun}}" noanimation="true"></div>
+  </div>
+  <div ng-if="app.layoutService.isInitialized && app.skipFirstRun"
+       ng-class="{invisible:!app.layoutService.isLoaded, 'notification-banner-visible': app.appStateAdapter.mainNotificationBannerStore.currentBanner, 'search-deeplink-open': app.layoutService.searchPaneActive }"
+       class="outer-shell">
+      <div analytics-panel="{{::app.panelRegions.main}}">
+          <desktop-header-bar enable-navigation="true"
+                              ng-if="app.layoutService.showDesktopHeaderBar"></desktop-header-bar>
+      </div>
+    <div id="wrapper"
+         class="ts-main"
+         ng-class="{ 'no-right-rail': !app.layoutService.rightRailAvailable,
+                     'no-left-rail': !app.layoutService.leftRailAvailable }">
+      <div analytics-panel="{{::app.panelRegions.left}}" class="app-left-wrapper pull-left">
+        <debug-header class="ts-header-section" ng-if="app.layoutService.isLoaded"></debug-header>
+        <app-bar class="ts-main-flex app-bar pull-left app-full-viewport-height"
+                 ng-class="{ 'immersive-hide': app.layoutService.immersiveAppBar, 'overlay-appbar': app.layoutService.useOverlayAppBar }"></app-bar>
+        <media-preview></media-preview>
+        <div class="ts-left-rail-wrapper ts-main-flex app-full-viewport-height pull-left"
+             ng-class="{'ts-search-active': app.layoutService.searchPaneActive }"
+             ng-show="app.layoutService.leftRailWrapperVisible">
+          <calling-monitor></calling-monitor>
+          <left-rail class="ts-left-rail app-rail-common"
+                     data-tid="left-rail"
+                     ng-if="app.layoutService.isLoaded">
+          </left-rail>
+          <a id="file-download-link-popup" class="file-download-link-popup" href="#" target="_blank" tabindex="-1"></a>
+          <a id="file-open-native-link" class="file-open-native-link" href="#" tabindex="-1"></a>
+        </div>
+      </div>
+      <main id="page-content-wrapper"
+            class="ts-middle ts-main-flex"
+            role="main"
+            analytics-panel="{{::app.panelRegions.main}}"
+            ng-if="app.layoutService.isLoaded">
+        <notification-banner notification-banner-store="app.appStateAdapter.mainNotificationBannerStore"></notification-banner>
+        <button class="demo-mode-button"
+              ng-if="app.containerEnabled"
+              ng-click="app.clearContainer()">{{app.containerString}}</button>
+        <!-- Adding noanimation=true to workaround bug https://github.com/angular-ui/ui-router/issues/545-->
+        <div class="flex-fill" ui-view="{{::app.panelRegions.main}}" noanimation="true"></div>
+      </main>
+      <div analytics-panel="{{::app.panelRegions.right}}">
+        <ts-load-directive
+          ng-show-no-animate="app.layoutService.rightRailAvailable"
+          id="sidebar-wrapper-right"
+          class="ts-right-rail thread-right-rail app-full-viewport-height"
+          directive-content-class="ts-directive-content"
+          directive-simple-scrollbar="app.layoutService.rightRailSimpleScrollbar"
+          directive="app.layoutService.rightRailComponentName"
+          directive-guid="app.layoutService.rightRailGuid"
+          directive-attrs="analytics-panel-view='{ panel: {type: {{app.layoutService.rightRailContext.panelType}}} }'"
+          context="app.layoutService.rightRailContext"
+          data-tid="ts-right-rail">
+          <aside class="ts-directive-content flex-fill"
+               role="complementary"></aside>
+        </ts-load-directive>
+      </div>
+    </div>
+    <reminders-list></reminders-list>
+    <skype-conversations-host></skype-conversations-host>
+    <keyboard-navigation-help></keyboard-navigation-help>
+  </div>
+  <perf-dashboard class="debug-right-rail" ng-if="app.layoutService.showPerfDashboard"></perf-dashboard>
+</body>
+</html>
