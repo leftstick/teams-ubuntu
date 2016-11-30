@@ -3,6 +3,7 @@ process.env.ELECTRON_HIDE_INTERNAL_MODULES = 'true';
 
 const electron = require('electron');
 const app = electron.app;
+const Menu = electron.Menu;
 const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow = null;
@@ -41,6 +42,8 @@ var startupOpts = {
 };
 
 app.on('ready', function() {
+
+    Menu.setApplicationMenu(Menu.buildFromTemplate(require('./src/menus')));
 
     mainWindow = new BrowserWindow(startupOpts);
     mainWindow.loadURL('https://teams.microsoft.com', {
