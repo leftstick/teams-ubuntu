@@ -13,7 +13,7 @@ The thing force me to do this is, ubuntu platform was not supported by default, 
 
 That's weird, but ok we don't mind. [electron](http://electron.atom.io/) helps.
 
-Not you can download the ubuntu version: [Microsoft-Teams-1.1.0-ubuntu](https://github.com/leftstick/teams-ubuntu/releases/download/1.1.0/Microsoft-Teams-1.1.0-ubuntu.zip)
+Now you can download the ubuntu version: [Microsoft-Teams-1.1.0-ubuntu](https://github.com/leftstick/teams-ubuntu/releases/download/1.1.0/Microsoft-Teams-1.1.0-ubuntu.zip)
 
 
 ## LICENSE ##
