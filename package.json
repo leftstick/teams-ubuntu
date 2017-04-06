@@ -1,12 +1,12 @@
 {
   "name": "teams-ubuntu",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Microsoft teams for ubuntu platforms",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-packager . 'Microsoft Teams' --platform=linux --arch=x64 --out=./dist --app-version=1.1.1 --electron-version=1.4.15 --ignore=\"node_modules/\"",
-    "distMac": "electron-packager . 'Microsoft Teams' --platform=darwin --arch=x64 --out=./dist --app-version=1.1.1 --electron-version=1.4.15 --ignore=\"(dist/|node_modules/)\""
+    "dist": "electron-packager . 'Microsoft Teams' --platform=linux --arch=x64 --out=./dist --app-version=1.1.2 --electron-version=1.6.2 --ignore=\"node_modules/\"",
+    "distMac": "electron-packager . 'Microsoft Teams' --platform=darwin --arch=x64 --out=./dist --app-version=1.1.2 --electron-version=1.6.2 --ignore=\"(dist/|node_modules/)\""
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/leftstick/teams-ubuntu#readme",
   "devDependencies": {
-    "electron": "^1.4.15",
-    "electron-packager": "^8.5.2"
+    "electron": "^1.6.2",
+    "electron-packager": "^8.6.0"
   }
 }
