@@ -46,10 +46,11 @@ app.on('ready', function() {
     Menu.setApplicationMenu(Menu.buildFromTemplate(require('./src/menus')));
 
     mainWindow = new BrowserWindow(startupOpts);
-    mainWindow.webContents.clearHistory();
+    
     mainWindow.loadURL('https://teams.microsoft.com', {
         userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'
     });
+    
     mainWindow.on('closed', function() {
         mainWindow = null;
     });

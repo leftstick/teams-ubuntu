@@ -1,3 +1,4 @@
+let count = 0;
 
 window.addEventListener('DOMContentLoaded', function() {
     const {remote} = require('electron');
@@ -5,13 +6,21 @@ window.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function waitForMaximize(win) {
-    const outer = document.querySelector('.outer-shell');
-    const loading = document.querySelector('.app-loading.animated');
-    const first = document.querySelector('.first-run');
-    if (outer && !loading && !first) {
+    const initialized = document.querySelector('.initialized.loadingscreendone');
+    if (initialized) {
         return win.maximize();
     }
     setTimeout(function() {
+        if (count === 100) {
+            count = 0;
+            win.webContents.session.clearStorageData(() => {
+                win.webContents.session.clearCache(() => {
+                    win.reload();
+                });
+            });
+            return;
+        }
+        count++;
         waitForMaximize(win);
     }, 50);
 }
