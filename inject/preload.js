@@ -7,18 +7,22 @@ window.addEventListener('DOMContentLoaded', function() {
 
 function waitForMaximize(win) {
     const initialized = document.querySelector('.initialized.loadingscreendone');
+    const isLoginPage = document.querySelector('#background_branding_container');
     if (initialized) {
         return win.maximize();
     }
-    setTimeout(function() {
-        if (count === 100) {
+    setTimeout(() => {
+        if (!isLoginPage && count === 300) {
             count = 0;
-            win.webContents.session.clearStorageData(() => {
+            // win.webContents.session.clearStorageData(() => {
                 win.webContents.session.clearCache(() => {
                     win.reload();
                 });
-            });
+            // });
             return;
+        }
+        if (isLoginPage) {
+            count = 0;
         }
         count++;
         waitForMaximize(win);
