@@ -5,6 +5,7 @@ const electron = require('electron');
 const app = electron.app;
 const Menu = electron.Menu;
 const BrowserWindow = electron.BrowserWindow;
+const shell = electron.shell;
 
 let mainWindow = null;
 
@@ -54,5 +55,11 @@ app.on('ready', function() {
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
+
+    mainWindow.webContents.on('new-window', function(event, url) {
+        event.preventDefault();
+        shell.openExternal(url);
+    });
+
     mainWindow.show();
 });
