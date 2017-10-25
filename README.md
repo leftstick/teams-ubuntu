@@ -15,6 +15,12 @@ That's weird, but ok we don't mind. [electron](http://electron.atom.io/) helps.
 
 Now you can download the ubuntu version: [Microsoft-Teams-1.1.4-ubuntu](https://github.com/leftstick/teams-ubuntu/releases/download/1.1.4/Microsoft-Teams-1.1.4-ubuntu.zip)
 
+## Getting Started ##
+1. Download [Microsoft-Teams-1.1.4-ubuntu](https://github.com/leftstick/teams-ubuntu/releases/download/1.1.4/Microsoft-Teams-1.1.4-ubuntu.zip).
+2. Unzip it.
+3. Install electron
+4. cd into /Microsoft Teams-linux-x64
+5. npm install; npm start
 
 ## LICENSE ##
 
