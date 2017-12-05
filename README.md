@@ -13,8 +13,28 @@ The thing force me to do this is, ubuntu platform was not supported by default, 
 
 That's weird, but ok we don't mind. [electron](http://electron.atom.io/) helps.
 
-Now you can download the ubuntu version: [Microsoft-Teams-1.1.4-ubuntu](https://github.com/leftstick/teams-ubuntu/releases/download/1.1.4/Microsoft-Teams-1.1.4-ubuntu.zip)
+Now you can download the ubuntu version: [Microsoft-Teams-1.1.5-ubuntu](https://github.com/leftstick/teams-ubuntu/releases/download/1.1.5/Microsoft-Teams-1.1.5-ubuntu.zip)
 
+## Want to contribute?
+
+First you need to clone this repo, for example:
+
+```bash
+git clone https://github.com/leftstick/teams-ubuntu.git
+```
+
+Then, install dependencies
+
+```bash
+cd teams-ubuntu
+npm install
+```
+
+Now, you are free to launch it:
+
+```bash
+npm start
+```
 
 ## LICENSE ##
 
