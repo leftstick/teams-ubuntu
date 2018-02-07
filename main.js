@@ -49,7 +49,7 @@ app.on('ready', function() {
     mainWindow = new BrowserWindow(startupOpts);
     
     mainWindow.loadURL('https://teams.microsoft.com', {
-        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36'
     });
     
     mainWindow.on('closed', function() {
