@@ -6,9 +6,9 @@
   "scripts": {
     "start": "electron .",
     "dist": "rm -rf dist && npm run 32-bit && npm run 64-bit",
-    "32-bit": "electron-packager . 'Microsoft Teams' --platform=linux --arch=ia32 --out=./dist --app-version=1.1.7 --electron-version=1.8.2 --ignore=\"node_modules/\"",
-    "64-bit": "electron-packager . 'Microsoft Teams' --platform=linux --arch=x64 --out=./dist --app-version=1.1.7 --electron-version=1.8.2 --ignore=\"node_modules/\"",
-    "distMac": "electron-packager . 'Microsoft Teams' --platform=darwin --arch=x64 --out=./dist --app-version=1.1.7 --electron-version=1.8.2 --ignore=\"(dist/|node_modules/)\""
+    "32-bit": "electron-packager . 'Microsoft Teams' --platform=linux --arch=ia32 --out=./dist --app-version=1.1.7 --ignore=\"node_modules/\"",
+    "64-bit": "electron-packager . 'Microsoft Teams' --platform=linux --arch=x64 --out=./dist --app-version=1.1.7 --ignore=\"node_modules/\"",
+    "distMac": "electron-packager . 'Microsoft Teams' --platform=darwin --arch=x64 --out=./dist --app-version=1.1.7 --ignore=\"(dist/|node_modules/)\""
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/leftstick/teams-ubuntu#readme",
   "devDependencies": {
-    "electron": "^1.8.2",
-    "electron-packager": "^11.0.0"
+    "electron": "^2.0.5",
+    "electron-packager": "^12.1.0"
   }
 }
