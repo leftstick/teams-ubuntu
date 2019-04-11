@@ -14,11 +14,10 @@ $(function(){
 
     $('#auto-start').on('change', function() {
         settings.set('config.autorun', $(this).is(':checked'));
-
-        electron.app.setLoginItemSettings({
-            openAtLogin: $(this).is(':checked'),
-            path: electron.app.getPath("exe")
-        });
         $('#auto-start').val($(this).is(':checked'));        
+    });
+
+    $('#info').on('click', function() {
+        alert('To this option take effect, application need to be restarted.');
     });
 });

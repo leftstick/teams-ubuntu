@@ -48,11 +48,6 @@ var startupOpts = {
     }
 };
 
-var teamsAutoLauncher = new AutoLaunch({
-    name: startupOpts.title,
-    path: app.getPath('exe')
-});
-
 app.on('ready', function() {
     if (!settings.has('config')){
         settings.set('config', {
@@ -60,6 +55,11 @@ app.on('ready', function() {
             autorun: false
         });
     }
+    
+    var teamsAutoLauncher = new AutoLaunch({
+        name: startupOpts.title,
+        path: app.getPath('exe').replace(' ', '\\ ')
+    });
 
     if (!settings.get('config.autorun')) {
         teamsAutoLauncher.disable();
