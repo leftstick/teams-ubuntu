@@ -28,6 +28,7 @@ module.exports =  [
                 label: 'Quit Microsoft Teams',
                 accelerator: 'CmdOrCtrl+Q',
                 click: function() {
+                    app.isQuiting = true;
                     app.quit();
                 }
             }
