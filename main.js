@@ -2,6 +2,8 @@
 process.env.ELECTRON_HIDE_INTERNAL_MODULES = 'true';
 
 const electron = require('electron');
+const settings = require('electron-settings');
+const AutoLaunch = require('auto-launch');
 const app = electron.app;
 const Menu = electron.Menu;
 const Tray = electron.Tray;
@@ -46,7 +48,33 @@ var startupOpts = {
     }
 };
 
+var teamsAutoLauncher = new AutoLaunch({
+    name: startupOpts.title,
+    path: app.getPath('exe')
+});
+
 app.on('ready', function() {
+    if (!settings.has('config')){
+        settings.set('config', {
+            tray: false,
+            autorun: false
+        });
+    }
+
+    if (!settings.get('config.autorun')) {
+        teamsAutoLauncher.disable();
+    } else {
+        teamsAutoLauncher.isEnabled()
+            .then(function(isEnabled){
+                if(isEnabled){
+                    return;
+                }
+                teamsAutoLauncher.enable();
+            })
+            .catch(function(err){
+                // handle error
+            });
+    }
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(require('./src/menus')));
 
@@ -67,7 +95,7 @@ app.on('ready', function() {
     });
 
     mainWindow.on('close', function (event) {
-        if(!app.isQuiting){
+        if(!app.isQuiting && settings.get('config.tray')){
             event.preventDefault();
             mainWindow.hide();
         }
@@ -81,6 +109,9 @@ app.on('ready', function() {
             click:  function(){
                 mainWindow.show();
             } 
+        },
+        {
+            type: 'separator'
         },
         { 
             label: 'Quit', 

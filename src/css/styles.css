@@ -1,0 +1,17 @@
+html,
+body {
+    margin: 0;
+    padding: 10px;
+    font-family: 'Ubuntu', sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #ececec;
+}
+h1 {
+    align-items: center;
+}
+div {
+    margin-bottom: 30px;
+}
