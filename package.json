@@ -27,5 +27,9 @@
   "devDependencies": {
     "electron": "^4.0.3",
     "electron-packager": "^13.0.1"
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.5",
+    "electron-settings": "^3.2.0"
   }
 }

@@ -6,19 +6,21 @@ module.exports =  [
         label: 'Application',
         submenu: [
             {
-                label: 'About Microsoft Teams',
+                label: 'Settings',
                 click: function() {
                     new BrowserWindow({
-                        width: 285,
-                        height: 230,
+                        width: 800,
+                        height: 600,
                         center: true,
                         resizable: false,
                         minimizable: false,
                         maximizable: false,
                         show: true,
-                        title: ''
+                        alwaysOnTop: true,
+                        autoHideMenuBar: true,
+                        title: 'Settings'
                     })
-                    .loadURL('file://' + resolve(__dirname, 'about.html'));
+                    .loadURL('file://' + resolve(__dirname, 'settings.html'));
                 }
             },
             {
@@ -28,6 +30,7 @@ module.exports =  [
                 label: 'Quit Microsoft Teams',
                 accelerator: 'CmdOrCtrl+Q',
                 click: function() {
+                    app.isQuiting = true;
                     app.quit();
                 }
             }
@@ -101,6 +104,27 @@ module.exports =  [
                     if (focusedWindow) {
                         focusedWindow.toggleDevTools();
                     }
+                }
+            }
+        ]
+    },
+    {
+        label: 'About',
+        submenu: [
+            {
+                label: 'About Microsoft Teams',
+                click: function() {
+                    new BrowserWindow({
+                        width: 285,
+                        height: 230,
+                        center: true,
+                        resizable: false,
+                        minimizable: false,
+                        maximizable: false,
+                        show: true,
+                        title: ''
+                    })
+                    .loadURL('file://' + resolve(__dirname, 'about.html'));
                 }
             }
         ]
