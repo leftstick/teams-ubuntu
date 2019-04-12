@@ -82,7 +82,7 @@ app.on('ready', function() {
     appIcon = new Tray(iconpath)
     
     mainWindow.loadURL('https://teams.microsoft.com', {
-        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36'
+        userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134'
     });
     
     mainWindow.on('closed', function() {
